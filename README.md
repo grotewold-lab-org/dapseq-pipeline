@@ -40,17 +40,17 @@ git clone git clone https://github.com/grotewold-lab/dapseq-pipeline.git
 cd dapseq-pipeline
 
 # trimmomatic (raw fasta -> clean fasta)
-docker compose start 1_trim
+docker compose run 1_trim
 
 # bowtie2 genome index (ref genome -> index)
-docker compose start 2_bt2-build
+docker compose run 2_bt2-build
 
 # bowtie2 mapping (clean fasta + index -> sam)
-docker compose start 2_bt2-map
+docker compose run 2_bt2-map
 
 # extract uniquely mapped reads (sam -> bam)
-docker compose start 3_samtools
+docker compose run 3_samtools
 
 # GEM tool (bams -> peaks)
-docker compose start 4_gemtool
+docker compose run 4_gemtool
 ```
