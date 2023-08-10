@@ -46,11 +46,11 @@ docker compose run 1_trim
 docker compose run 2_bt2-build
 
 # bowtie2 mapping (clean fasta + index -> sam)
-docker compose run 2_bt2-map
+docker compose run 3_bt2-map
 
 # extract uniquely mapped reads (sam -> bam)
-docker compose run 3_samtools
+docker compose run 4_samtools
 
 # GEM tool (bams -> peaks)
-docker compose run 4_gemtool
+docker compose run 5_gemtool
 ```
