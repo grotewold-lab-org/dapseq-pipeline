@@ -22,4 +22,4 @@ services:
     volumes:
       - ./:/mnt
     container_name: bt2-build
-    command: bowtie2 -x /mnt/output/indexed-genome -q /mnt/output/clean.fa --sensitive --threads 6 /mnt/output/indexed-genome
+    command: bowtie2 -x /mnt/output/indexed-genome -q /mnt/output/clean.fa --sensitive --threads 6 -S /mnt/output/aligned.sam
