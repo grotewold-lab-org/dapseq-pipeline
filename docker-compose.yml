@@ -1,0 +1,25 @@
+services:
+
+
+  1_trim:
+    image: openjdk:22-bookworm
+    volumes:
+      - ./:/mnt
+    container_name: trim
+    command: java -jar /mnt/Trimmomatic-0.38/trimmomatic-0.38.jar SE -phred33 -threads 6 /mnt/Raw_data/P1_deM_R1_SE50_20190904.fastq.gz /mnt/output/clean.fa ILLUMINACLIP:/mnt/Trimmomatic-0.38/TruSeq3-SE.fa:2:30:10 SLIDINGWINDOW:6:15 MINLEN:30
+    
+    
+  2_bt2-build:
+    image: biocontainers/bowtie2:v2.4.1_cv1
+    volumes:
+      - ./:/mnt
+    container_name: bt2-build
+    command: gunzip /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa.gz && bowtie2-build /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa --threads 6 /mnt/output/indexed-genome
+    
+    
+  3_bt2-map:
+    image: biocontainers/bowtie2:v2.4.1_cv1
+    volumes:
+      - ./:/mnt
+    container_name: bt2-build
+    command: bowtie2 -x /mnt/output/indexed-genome -q /mnt/output/clean.fa --sensitive --threads 6 /mnt/output/indexed-genome
