@@ -14,7 +14,7 @@ services:
     volumes:
       - ./:/mnt
     container_name: bt2-build
-    command: gunzip /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa.gz && bowtie2-build /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa --threads 6 /mnt/output/indexed-genome
+    command: sh -c 'gunzip -c /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa.gz > /mnt/output/Zm-v4.fa &&  bowtie2-build /mnt/output/Zm-v4.fa --threads 6 /mnt/output/indexed-genome'
     
     
   3_bt2-map:
