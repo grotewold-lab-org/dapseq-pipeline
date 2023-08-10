@@ -33,10 +33,11 @@ the command should
 ## Usage
 
 clone this repository and execute pipeline steps 
+
 all intermediate and output files are saved in `output` folder
 ```
-git clone
-cd 
+git clone git clone https://github.com/grotewold-lab/dapseq-pipeline.git
+cd dapseq-pipeline
 
 # trimmomatic (raw fasta -> clean fasta)
 docker compose start 1_trim
