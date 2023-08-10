@@ -23,3 +23,11 @@ services:
       - ./:/mnt
     container_name: bt2-build
     command: bowtie2 -x /mnt/output/indexed-genome -q /mnt/output/clean.fa --sensitive --threads 6 -S /mnt/output/aligned.sam
+
+
+  4_samtools:
+    image: biocontainers/samtools:v1.7.0_cv4
+    volumes:
+      - ./:/mnt
+    container_name: 
+    command: sh -c 'samtools view -h -F 4 /mnt/output/aligned.sam | grep -v "XS:i" > /mnt/output/samtools_1.sam'
