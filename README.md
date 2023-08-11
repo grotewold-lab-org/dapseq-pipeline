@@ -2,9 +2,9 @@
 
 pipeline for cleaning, mapping, and peak identification for DAP-seq data
 
-this repository contains a combination of bash scripts and docker configurations to 
+This repository contains bash scripts (same as HPC), and sample data to run the pipeline. Docker configurations are included as an optional way for users to execute the pipeline, and also for automated testing.
 
-- cross-platform - run on any computer using only docker
+- cross-platform - can run on any computer using only docker
 - stable - automated testing ensures the pipeline works correctly
 - modular - each step in the pipeline works independantly on a standard linux system (HPC)
 - no ongoing maintenence - all software and data is "locked in" to ensure reproducibility
