@@ -4,3 +4,5 @@ Raw_data/P1_deM_R1_SE50_20190904.fastq.gz filter=lfs diff=lfs merge=lfs -text
 Raw_data/P1_deM_R2_SE50_20190904.fastq.gz filter=lfs diff=lfs merge=lfs -text
 Raw_data/Halo_deM_R1_SE50_20190904.fastq.gz filter=lfs diff=lfs merge=lfs -text
 gem/gem.jar filter=lfs diff=lfs merge=lfs -text
+genomes/A632_FastaAlterRefB73.fasta.gz filter=lfs diff=lfs merge=lfs -text
+genomes/A632_Wang_new.fasta.gz filter=lfs diff=lfs merge=lfs -text

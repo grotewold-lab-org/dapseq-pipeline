@@ -15,7 +15,7 @@ services:
     volumes:
       - ./:/mnt
     container_name: bt2-build
-    command: sh -c 'gunzip -c /mnt/Zm-B73-REFERENCE-GRAMENE-4.0.fa.gz > /mnt/output/Zm-v4.fa && bowtie2-build /mnt/output/Zm-v4.fa --threads 6 /mnt/output/indexed-genome'
+    command: sh -c 'gunzip -c /mnt/genomes/A632_FastaAlterRefB73.fasta.gz > /mnt/output/Zm-v4.fa && bowtie2-build /mnt/output/Zm-v4.fa --threads 6 /mnt/output/indexed-genome'
     
     
   # map reads to reference genome
@@ -43,3 +43,12 @@ services:
       - ./:/mnt
     container_name: samtools
     command: sh -c 'samtools view -q 42 -b /mnt/output/aligned.sam -o /mnt/output/5a.bam && samtools sort /mnt/output/5a.bam -o /mnt/output/perfect.bam && samtools index /mnt/output/perfect.bam'
+
+
+  # Identifying peaks using GEM tool
+  6_gemtool:
+    image: openjdk:22-bookworm
+    volumes:
+      - ./:/mnt
+    container_name: gemtool
+    command: java -jar /mnt/gem/gem.jar --d /mnt/gem/Read_Distribution_default.txt --q 
