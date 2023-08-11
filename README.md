@@ -2,7 +2,7 @@
 
 pipeline for cleaning, mapping, and peak identification for DAP-seq data
 
-This repository contains bash scripts (same as HPC), and sample data to run the pipeline. Docker configurations are included as an optional way for users to execute the pipeline, and also for automated testing.
+This repository contains bash scripts (same as HPC), and sample data. Docker configurations are included as an optional way for users to execute the pipeline, and also for automated testing.
 
 - cross-platform - can run on any computer using only docker
 - stable - automated testing ensures the pipeline works correctly
@@ -15,7 +15,7 @@ This repository contains bash scripts (same as HPC), and sample data to run the 
 
 Each pipeline step is defined by a docker image and a bash command in docker-compose.yml
 
-```
+```yml
   1_trim:
     image: openjdk:22-bookworm
     ...
@@ -42,7 +42,7 @@ install [git lfs](https://git-lfs.com/) and [docker](https://www.docker.com/)
 clone this repository and execute pipeline steps 
 
 all intermediate and output files are saved in `output` folder
-```
+```bash
 git clone https://github.com/grotewold-lab/dapseq-pipeline.git
 cd dapseq-pipeline
 git lfs pull
