@@ -5,8 +5,8 @@ services:
     image: openjdk:22-bookworm
     volumes:
       - ./:/mnt
-    container_name: trim
-    command: java -jar /mnt/Trimmomatic-0.38/trimmomatic-0.38.jar SE -phred33 -threads 6 /mnt/Raw_data/P1_deM_R1_SE50_20190904.fastq.gz /mnt/output/clean.fa ILLUMINACLIP:/mnt/Trimmomatic-0.38/TruSeq3-SE.fa:2:30:10 SLIDINGWINDOW:6:15 MINLEN:30
+    container_name: 1_trim
+    command: /mnt/steps/1_trim.sh
    
  
   # index reference genome
@@ -14,17 +14,17 @@ services:
     image: biocontainers/bowtie2:v2.4.1_cv1
     volumes:
       - ./:/mnt
-    container_name: bt2-build
-    command: sh -c 'gunzip -c /mnt/genomes/Maize_AGPv4_B73.fa.gz > /mnt/output/genome_b73.fa && bowtie2-build /mnt/output/genome_b73.fa --threads 6 /mnt/output/index_b73'
-    
+    container_name: 2_bt2-build    
+    command: /mnt/steps/2_bt2-build.sh   
+  
     
   # map reads to reference genome
   3_bt2-map:
     image: biocontainers/bowtie2:v2.4.1_cv1
     volumes:
       - ./:/mnt
-    container_name: bt2-build
-    command: bowtie2 -x /mnt/output/index_b73 -q /mnt/output/clean.fa --sensitive --threads 6 -S /mnt/output/aligned.sam
+    container_name: 3_bt2-map
+    command: /mnt/steps/3_bt2-map.sh
 
 
   # extract uniquely mapped reads
@@ -32,8 +32,8 @@ services:
     image: biocontainers/samtools:v1.7.0_cv4
     volumes:
       - ./:/mnt
-    container_name: samtools
-    command: sh -c 'samtools view -h -F 4 /mnt/output/aligned.sam | grep -v "XS:i" > /mnt/output/4a.sam && samtools view -h -Sb /mnt/output/4a.sam -o /mnt/output/4b.bam && samtools sort /mnt/output/4b.bam -o /mnt/output/unique.bam && samtools index /mnt/output/unique.bam'
+    container_name: 4_samtools
+    command: /mnt/steps/4_samtools.sh
 
 
   # extract uniquely mapped reads with perfect match (MAPQ= 42)
@@ -41,8 +41,8 @@ services:
     image: biocontainers/samtools:v1.7.0_cv4
     volumes:
       - ./:/mnt
-    container_name: samtools
-    command: sh -c 'samtools view -q 42 -b /mnt/output/aligned.sam -o /mnt/output/5a.bam && samtools sort /mnt/output/5a.bam -o /mnt/output/perfect.bam && samtools index /mnt/output/perfect.bam'
+    container_name: 5_samtools
+    command: /mnt/steps/5_samtools.sh
 
 
   # Identifying peaks using GEM tool
@@ -50,5 +50,5 @@ services:
     image: openjdk:22-bookworm
     volumes:
       - ./:/mnt
-    container_name: gemtool
-    command: java -jar /mnt/gem/gem.jar --d /mnt/gem/Read_Distribution_default.txt --q 
+    container_name: 6_gemtool
+    command: /mnt/steps/6_gemtool.sh

@@ -10,3 +10,9 @@ docker compose run 3_bt2-map
 
 # extract uniquely mapped reads (sam -> bam)
 docker compose run 4_samtools
+
+# extract uniquely mapped reads with perfect match (MAPQ= 42) 
+docker compose run 5_samtools
+
+# GEM tool (bams -> peaks)
+docker compose run 6_gemtool
