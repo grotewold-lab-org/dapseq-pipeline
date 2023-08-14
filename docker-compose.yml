@@ -15,7 +15,7 @@ services:
     volumes:
       - ./:/mnt
     container_name: bt2-build
-    command: sh -c 'gunzip -c /mnt/genomes/A632_FastaAlterRefB73.fasta.gz > /mnt/output/Zm-v4.fa && bowtie2-build /mnt/output/Zm-v4.fa --threads 6 /mnt/output/indexed-genome'
+    command: sh -c 'gunzip -c /mnt/genomes/Maize_AGPv4_B73.fa.gz > /mnt/output/genome_b73.fa && bowtie2-build /mnt/output/genome_b73.fa --threads 6 /mnt/output/index_b73'
     
     
   # map reads to reference genome
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./:/mnt
     container_name: bt2-build
-    command: bowtie2 -x /mnt/output/indexed-genome -q /mnt/output/clean.fa --sensitive --threads 6 -S /mnt/output/aligned.sam
+    command: bowtie2 -x /mnt/output/index_b73 -q /mnt/output/clean.fa --sensitive --threads 6 -S /mnt/output/aligned.sam
 
 
   # extract uniquely mapped reads
