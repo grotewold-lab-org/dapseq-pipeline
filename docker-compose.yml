@@ -52,3 +52,12 @@ services:
       - ./:/mnt
     container_name: 6_gemtool
     command: /mnt/steps/6_gemtool.sh
+
+  # Identifying reproducible peaks using the IDR test
+  7_idr:
+    image: quay.io/biocontainers/idr:2.0.4.2--py39hec16e2b_10
+    volumes:
+      - ./:/mnt
+    container_name: 7_idr
+    command: /mnt/steps/7_idr.sh
+
