@@ -24,4 +24,6 @@ jobs:
 
       - uses: actions/checkout@v2
       - name: run pipeline
-        run: ./run_all_steps.sh
+        run: |
+          chmod 777 -R .
+          ./run_all_steps.sh
