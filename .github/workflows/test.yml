@@ -26,4 +26,6 @@ jobs:
         with:
           lfs: true
       - name: run pipeline
-        run: ./run_all_steps.sh
+        run: |
+          git lfs pull
+          ./run_all_steps.sh
