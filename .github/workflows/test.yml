@@ -15,15 +15,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: debug
         run: |
           echo 'hello world'
           pwd
           dir
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
       - name: run pipeline
-        run: |
-          git lfs pull
-          ./run_all_steps.sh
+        run: ./run_all_steps.sh
