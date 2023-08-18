@@ -21,3 +21,5 @@ jobs:
           echo 'hello world'
           pwd
           dir
+      - name: run pipeline
+          ./run_all_steps.sh
