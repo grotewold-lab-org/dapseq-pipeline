@@ -21,7 +21,6 @@ jobs:
           echo 'hello world'
           pwd
           dir
-
       - uses: actions/checkout@v2
       - name: run pipeline
           ./run_all_steps.sh
