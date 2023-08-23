@@ -19,3 +19,11 @@ idr --samples \
     --plot
 
 
+# assert that IDR results contain expected peaks
+if grep -Pq 'chr4\t209797374' /mnt/output/B73_idr_peaks.out; then
+    echo "success"
+    exit 0
+fi
+echo 'missing expected peak: chr4 209797374'
+exit 1
+
