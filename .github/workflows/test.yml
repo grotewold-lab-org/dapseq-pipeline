@@ -13,11 +13,24 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - name: debug
-        run: |
-          echo 'hello world'
-          pwd
-          dir
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+      - name: git lfs pull
+        run: git lfs pull
+      - name: 1_trim
+        run: docker compose run 1_trim
+      - name: 2_bt2-build
+        run: docker compose run 2_bt2-build
+      - name: 3_bt2-map
+        run: docker compose run 3_bt2-map
+      - name: 4_samtools
+        run: docker compose run 4_samtools
+      - name: 5_samtools
+        run: docker compose run 5_samtools
+      - name: 6_gemtool
+        run: docker compose run 6_gemtool
+      - name: 7_idr
+        run: docker compose run 7_idr

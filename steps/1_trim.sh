@@ -11,6 +11,9 @@ specs=(
 )
 
 
+#debug
+dir
+
 # run trimmomatic for each row in specs
 for row in "${specs[@]}"; do
     IFS=';' read -ra paths <<< "$row"
@@ -18,6 +21,9 @@ for row in "${specs[@]}"; do
     output_fname="${paths[1]}"
 
     echo "Trimmomatic $input_fname -> $output_fname"
+
+    #debug
+    wc -l /mnt/raw_data/$input_fname
 
     java -jar /mnt/Trimmomatic-0.38/trimmomatic-0.38.jar \
         SE -phred33 -threads 6 \
