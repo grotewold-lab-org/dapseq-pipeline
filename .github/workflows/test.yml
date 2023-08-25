@@ -23,28 +23,28 @@ jobs:
       - name: 1_trim
         run: |
             sudo chmod 777 -R output
-            docker compose run 1_trim
+            sudo docker compose run 1_trim
       - name: 2_bt2-build
         run: |
             sudo chmod 777 -R output
-            docker compose run 2_bt2-build
+            sudo docker compose run 2_bt2-build
       - name: 3_bt2-map
         run: |
             sudo chmod 777 -R output
-            docker compose run 3_bt2-map
+            sudo docker compose run 3_bt2-map
       - name: 4_samtools
         run: |
             sudo chmod 777 -R output
-            docker compose run 4_samtools
+            sudo docker compose run 4_samtools
       - name: 5_samtools
         run: |
             sudo chmod 777 -R output
-            docker compose run 5_samtools
+            sudo docker compose run 5_samtools
       - name: 6_gemtool
         run: |
             sudo chmod 777 -R output
-            docker compose run 6_gemtool
+            sudo docker compose run 6_gemtool
       - name: 7_idr
         run: |
             sudo chmod 777 -R output
-            docker compose run 7_idr
+            sudo docker compose run 7_idr
