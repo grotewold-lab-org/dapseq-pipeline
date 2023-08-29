@@ -11,9 +11,6 @@ specs=(
 )
 
 
-#debug
-dir
-
 # run trimmomatic for each row in specs
 for row in "${specs[@]}"; do
     IFS=';' read -ra paths <<< "$row"
